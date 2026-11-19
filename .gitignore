@@ -3,3 +3,6 @@
 _src/
 .claude/
 .playwright-mcp/
+
+.vercel
+.env*
