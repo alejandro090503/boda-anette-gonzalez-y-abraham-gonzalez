@@ -1,0 +1,5 @@
+.vercel
+.env*
+_src/
+.claude/
+.playwright-mcp/
