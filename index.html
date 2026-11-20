@@ -511,6 +511,29 @@ footer .credit svg{width:14px;height:14px}
   .env-rain{display:none}
 }
 
+/* ── Caja de regalo + card expandida (boda-paola-e-ivan, paleta bosque) ── */
+.gfb-stage{display:flex;flex-direction:column;align-items:center;margin:46px auto 0}
+.gfb-box{position:relative;width:170px;padding:0;border:0;background:none;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;animation:gfbFloat 4.6s ease-in-out infinite}
+.gfb-box svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 30px rgba(44,52,36,.32))}
+.gfb-box::after{content:"";position:absolute;left:12%;right:12%;bottom:-10px;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(44,52,36,.28),transparent)}
+@keyframes gfbFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(-1deg)}}
+.gfb-lid{transform-box:fill-box;transform-origin:50% 100%;transition:transform .6s cubic-bezier(.34,1.4,.5,1),opacity .55s ease}
+.gfb-box.is-open .gfb-lid{transform:translateY(-46px) rotate(-14deg);opacity:0}
+.gfb-cta{margin-top:24px;min-height:44px;padding:8px 18px 8px calc(18px + .32em);border:0;background:none;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep);animation:gfbPulse 2.6s ease-in-out infinite;transition:opacity .4s}
+@keyframes gfbPulse{0%,100%{opacity:.65}50%{opacity:1}}
+.gfb-cta.is-hidden{opacity:0;animation:none;pointer-events:none}
+.gfb-modal{position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(31,38,26,.55);opacity:0;transition:opacity .4s ease}
+.gfb-modal[hidden]{display:none!important}
+.gfb-modal.is-open{opacity:1}
+.gfb-modal .gf-card{width:100%;max-width:360px;margin:0;padding:46px 26px 32px;text-align:center;background:var(--card) url('assets/papel.webp') center/cover;
+  box-shadow:0 34px 80px rgba(15,20,12,.45),inset 0 0 0 1px rgba(255,255,255,.4);opacity:0;transform:translateY(30px) scale(.9);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1.1)}
+.gfb-modal.is-open .gf-card{opacity:1;transform:none}
+.gfb-modal .gf-card::after{content:"";position:absolute;inset:12px;border:1px solid var(--hair-gold);border-radius:2px;pointer-events:none}
+.gfb-logo{position:relative;z-index:1;display:block;width:150px;height:auto;margin:16px auto 8px}
+.gfb-close{position:absolute;top:16px;right:16px;z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair-gold);background:rgba(251,248,241,.92);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.gfb-close svg{width:16px;height:16px}
+@media (prefers-reduced-motion:reduce){.gfb-box,.gfb-cta{animation:none}.gfb-lid,.gfb-modal,.gfb-modal .gf-card{transition:none}}
+
 /* ═══ BLOQUE rsvp ═══ */
 /* ══ CONFIRMAR ASISTENCIA · #confirmar (RSVP X pases; base jennifer-y-marcel + gabriela-y-ulises, repintado bosque) ══ */
 #confirmar.rsvp-sec{position:relative;padding:76px 16px 84px;text-align:center;color:var(--ink);font-family:var(--serif)}
@@ -787,6 +810,18 @@ footer{padding-bottom:140px}
   .hero-drift,.hero-glow b,.hero-lens::before,.hero-dust i,.loc-card,.fam-card,.foil-text,.sec-title,.hero-and{animation:none!important}
   .hero-dust{display:none}
 }
+
+/* Itinerario: halo premium detrás de cada dibujo para que se distinga del fondo */
+.tl-ico{box-sizing:content-box;width:84px;height:84px;padding:12px;border-radius:50%;object-fit:contain;
+  background:radial-gradient(circle at 50% 45%,#fffdf7 0%,#fbf6ea 46%,rgba(247,231,206,.92) 62%,rgba(247,231,206,0) 72%);
+  box-shadow:0 0 0 1px rgba(184,146,42,.5),0 0 0 6px rgba(251,248,241,.55),0 0 0 7px rgba(184,146,42,.22),0 14px 30px -10px rgba(44,52,36,.38),0 0 34px 4px rgba(212,175,55,.22);
+  animation:tlHalo 4.8s ease-in-out infinite}
+.tl-row:nth-child(odd) .tl-ico{animation-delay:-2.4s}
+.tl-row.on .tl-ico{animation:pop .7s cubic-bezier(.34,1.56,.64,1) both,tlHalo 4.8s ease-in-out .7s infinite}
+@keyframes tlHalo{0%,100%{box-shadow:0 0 0 1px rgba(184,146,42,.5),0 0 0 6px rgba(251,248,241,.55),0 0 0 7px rgba(184,146,42,.22),0 14px 30px -10px rgba(44,52,36,.38),0 0 30px 2px rgba(212,175,55,.18)}
+  50%{box-shadow:0 0 0 1px rgba(184,146,42,.6),0 0 0 6px rgba(251,248,241,.6),0 0 0 7px rgba(184,146,42,.3),0 14px 30px -10px rgba(44,52,36,.38),0 0 42px 8px rgba(212,175,55,.32)}}
+.tl-row-inner{position:relative;z-index:2}
+@media (prefers-reduced-motion:reduce){.tl-ico{animation:none!important}}
 
 /* 3 · Tintas (save the date Lekshmy) repintadas a lavado de acuarela bosque */
 .sec-paper{overflow:hidden}
@@ -1172,16 +1207,45 @@ footer{padding-bottom:140px}
     </button>
     <button class="env-tap-hint" id="envGiftHint" type="button" aria-controls="envGiftContent">Toca para abrir</button>
 
-    <div class="gf-card" id="gfCard">
-      <span class="gf-card-sheen" aria-hidden="true"></span>
-      <p class="gf-card-lbl">Transferencia</p>
-      <p class="gf-card-bank">BBVA</p>
-      <p class="gf-card-num" id="gfCardNum" data-copy="4152313945784739">4152 3139 4578 4739</p>
-      <p class="gf-card-holder"><span class="gf-card-holder-lbl">Titular</span>Anette Yizel González Mojarro</p>
-      <button class="gf-copy" id="gfCopy" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
-        <span>Copiar número</span>
+    <!-- Transferencia: caja de regalo (boda-paola-e-ivan) que se abre en una card expandida -->
+    <div class="gfb-stage">
+      <button class="gfb-box" id="gfBox" type="button" aria-label="Abrir regalo: datos para transferencia" aria-expanded="false" aria-controls="gfModal">
+        <svg viewBox="0 0 200 190" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gfbShade" x1="26" y1="72" x2="174" y2="176" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff" stop-opacity=".16"/><stop offset="1" stop-color="#000000" stop-opacity=".22"/></linearGradient>
+            <linearGradient id="gfbGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9cf7e"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#9c7a1e"/></linearGradient>
+          </defs>
+          <rect x="26" y="72" width="148" height="104" rx="4" fill="#4c583e"/>
+          <rect x="26" y="72" width="148" height="104" rx="4" fill="url(#gfbShade)"/>
+          <rect x="88" y="72" width="24" height="104" fill="url(#gfbGold)"/>
+          <rect x="26" y="112" width="148" height="15" fill="url(#gfbGold)"/>
+          <rect x="26.7" y="72.7" width="146.6" height="102.6" rx="3.3" stroke="#2c3424" stroke-width="1.4"/>
+          <g class="gfb-lid">
+            <rect x="16" y="54" width="168" height="26" rx="4" fill="#5d6a4c"/>
+            <rect x="16.7" y="54.7" width="166.6" height="24.6" rx="3.3" stroke="#2c3424" stroke-width="1.4"/>
+            <rect x="88" y="54" width="24" height="26" fill="url(#gfbGold)"/>
+            <path d="M100 54 C100 40 84 26 70 32 C58 37 62 52 78 54 Z" fill="url(#gfbGold)" stroke="#8a6a14" stroke-width="1.2"/>
+            <path d="M100 54 C100 40 116 26 130 32 C142 37 138 52 122 54 Z" fill="url(#gfbGold)" stroke="#8a6a14" stroke-width="1.2"/>
+            <circle cx="100" cy="52" r="8" fill="#F7E7CE" stroke="#8a6a14" stroke-width="1.2"/>
+          </g>
+        </svg>
       </button>
+      <button class="gfb-cta" id="gfBoxCta" type="button" aria-controls="gfModal">Toca el regalo</button>
+    </div>
+
+    <div class="gfb-modal" id="gfModal" role="dialog" aria-modal="true" aria-label="Datos para transferencia" hidden>
+      <div class="gf-card" id="gfCard">
+        <span class="gf-card-sheen" aria-hidden="true"></span>
+        <button class="gfb-close" id="gfClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        <p class="gf-card-lbl">Transferencia</p>
+        <img class="gfb-logo" src="assets/bbva-logo.png" alt="BBVA" width="600" height="180" decoding="async">
+        <p class="gf-card-num" id="gfCardNum" data-copy="4152313945784739">4152 3139 4578 4739</p>
+        <p class="gf-card-holder"><span class="gf-card-holder-lbl">Titular</span>Anette Yizel González Mojarro</p>
+        <button class="gf-copy" id="gfCopy" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
+          <span>Copiar número</span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="gf-toast" id="gfToast" role="status" aria-live="polite"></div>
@@ -1481,6 +1545,7 @@ function initScratch(){
   cv.addEventListener('touchmove',sc,{passive:true});cv.addEventListener('touchend',function(){drawing=false});
   var rt;window.addEventListener('resize',function(){if(revealed)return;clearTimeout(rt);rt=setTimeout(paint,200)});
 }
+window.sparkle=sparkle;
 function sparkle(box){
   if(prefersReduced)return;var r=box.getBoundingClientRect();
   for(var i=0;i<16;i++){var s=document.createElement('span');s.className='cf';
@@ -1964,12 +2029,33 @@ function initAutoScroll(){
 
     /* ── Tarjeta: destello al entrar ── */
     var card = document.getElementById('gfCard');
-    if (card && 'IntersectionObserver' in window && !reduce){
-      new IntersectionObserver(function(en){
-        if (en[0].isIntersecting){
-          card.classList.remove('sheen'); void card.offsetWidth; card.classList.add('sheen');
-        }
-      }, { threshold: .55 }).observe(card);
+    /* ── Caja de regalo -> card expandida (de boda-paola-e-ivan) ── */
+    var gBox = document.getElementById('gfBox'), gCta = document.getElementById('gfBoxCta'),
+        gModal = document.getElementById('gfModal'), gClose = document.getElementById('gfClose'), gOpen = false;
+    if (gModal && gModal.parentNode !== document.body) document.body.appendChild(gModal);
+    function gfOpen(){
+      if (gOpen || !gModal) return; gOpen = true;
+      window.dispatchEvent(new Event('ely:interact'));
+      gBox.classList.add('is-open'); gBox.setAttribute('aria-expanded','true'); gCta.classList.add('is-hidden');
+      if (typeof window.sparkle === 'function') window.sparkle(gBox);
+      setTimeout(function(){
+        gModal.hidden = false; document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          gModal.classList.add('is-open');
+          if (!reduce){ card.classList.remove('sheen'); void card.offsetWidth; setTimeout(function(){ card.classList.add('sheen'); }, 380); }
+        }); });
+      }, reduce ? 0 : 260);
+    }
+    function gfCloseFn(){
+      if (!gOpen) return; gOpen = false;
+      gModal.classList.remove('is-open'); document.body.style.overflow = '';
+      setTimeout(function(){ gModal.hidden = true; gBox.classList.remove('is-open'); gBox.setAttribute('aria-expanded','false'); gCta.classList.remove('is-hidden'); }, reduce ? 0 : 420);
+    }
+    if (gBox){
+      gBox.addEventListener('click', gfOpen); gCta.addEventListener('click', gfOpen);
+      gClose.addEventListener('click', gfCloseFn);
+      gModal.addEventListener('click', function(e){ if (e.target === gModal) gfCloseFn(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') gfCloseFn(); });
     }
 
     /* ── Copiar número ── */
