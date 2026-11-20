@@ -354,6 +354,23 @@ footer .credit svg{width:14px;height:14px}
   .dc-armed .dc-rv{transition:none;opacity:1;transform:none}
 }
 
+/* Colores a evitar: UNA bola que pasa difuminada de un color al siguiente */
+.dc-morph{display:flex;flex-direction:column;align-items:center;gap:16px;margin:6px auto 4px}
+.dc-morph-orb{position:relative;width:96px;height:96px;display:block;animation:dcFloat 4.6s ease-in-out infinite}
+.dc-morph-orb .dc-sw-glow{inset:-18px}
+.dc-morph-dot{position:relative;display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box,var(--foil) border-box;
+  box-shadow:inset 0 -8px 16px rgba(0,0,0,.14),inset 0 8px 14px rgba(255,255,255,.45),0 12px 24px -10px rgba(44,52,36,.5)}
+.dc-morph-dot::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.75) 0 12%,rgba(255,255,255,0) 34%),linear-gradient(160deg,rgba(255,255,255,0) 55%,rgba(0,0,0,.12) 100%)}
+.dc-mx{position:absolute;inset:0;background:var(--c);opacity:0;animation:dcMorph 12.5s linear infinite;animation-delay:calc(var(--k) * 2.5s - 12.5s)}
+.dc-mx:first-child{opacity:1}
+@keyframes dcMorph{0%{opacity:0}8%{opacity:1}20%{opacity:1}28%{opacity:0}100%{opacity:0}}
+.dc-morph-names{position:relative;display:block;width:200px;height:1.4em;font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);letter-spacing:.04em}
+.dc-mn{position:absolute;inset:0;opacity:0;animation:dcMorph 12.5s linear infinite;animation-delay:calc(var(--k) * 2.5s - 12.5s)}
+#vestimenta:not(.dc-live) .dc-mx,#vestimenta:not(.dc-live) .dc-mn,#vestimenta:not(.dc-live) .dc-morph-orb{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.dc-morph-orb{animation:none}.dc-mx,.dc-mn{animation-duration:25s}}
+
 /* ═══ BLOQUE galeria ═══ */
 /* ══ GALERÍA · CARRUSEL 3D · #galeria (base veronica-y-andres, repintado bosque) ══ */
 #galeria.gal-sec{position:relative;overflow:hidden;padding:80px 0 76px;text-align:center;color:var(--ink);font-family:var(--serif)}
@@ -1089,13 +1106,7 @@ footer{padding-bottom:140px}
 
   <div class="dc-group dc-group--avoid dc-rv">
     <h3 class="dc-group-title"><span class="dc-gt-line" aria-hidden="true"></span>Colores a evitar<span class="dc-gt-line" aria-hidden="true"></span></h3>
-    <ul class="dc-swatches" role="list">
-      <li class="dc-sw dc-sw--light" style="--c:#FFFFFF;--i:3"><span class="dc-sw-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-sw-dot" aria-hidden="true"></span></span><span class="dc-sw-name">Blanco</span></li>
-      <li class="dc-sw" style="--c:#f70000;--i:4"><span class="dc-sw-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-sw-dot" aria-hidden="true"></span></span><span class="dc-sw-name">Rojo</span></li>
-      <li class="dc-sw" style="--c:#f30fff;--i:5"><span class="dc-sw-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-sw-dot" aria-hidden="true"></span></span><span class="dc-sw-name">Fucsia</span></li>
-      <li class="dc-sw dc-sw--light" style="--c:#f9eb00;--i:6"><span class="dc-sw-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-sw-dot" aria-hidden="true"></span></span><span class="dc-sw-name">Amarillo</span></li>
-      <li class="dc-sw dc-sw--light" style="--c:#a0ea00;--i:7"><span class="dc-sw-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-sw-dot" aria-hidden="true"></span></span><span class="dc-sw-name">Verde lima</span></li>
-    </ul>
+    <div class="dc-morph" role="img" aria-label="Colores a evitar: Blanco, Rojo, Fucsia, Amarillo, Verde lima"><span class="dc-morph-orb"><span class="dc-sw-glow" aria-hidden="true"></span><span class="dc-morph-dot" aria-hidden="true"><span class="dc-mx" style="--c:#FFFFFF;--k:0"></span><span class="dc-mx" style="--c:#f70000;--k:1"></span><span class="dc-mx" style="--c:#f30fff;--k:2"></span><span class="dc-mx" style="--c:#f9eb00;--k:3"></span><span class="dc-mx" style="--c:#a0ea00;--k:4"></span></span></span><span class="dc-morph-names" aria-hidden="true"><span class="dc-mn" style="--k:0">Blanco</span><span class="dc-mn" style="--k:1">Rojo</span><span class="dc-mn" style="--k:2">Fucsia</span><span class="dc-mn" style="--k:3">Amarillo</span><span class="dc-mn" style="--k:4">Verde lima</span></span></div>
     <p class="dc-final">Te pedimos evitar estos tonos. ¡Gracias por tu comprensión!</p>
   </div>
 </section>
@@ -1425,7 +1436,7 @@ function initLeaves(){
   for(var i=0;i<9;i++){
     var d=document.createElement('div');d.className='lf';
     var w=16+Math.random()*18;
-    d.style.cssText='left:'+(Math.random()*100)+'%;width:'+w+'px;opacity:'+(.55+Math.random()*.35)+';--dx:'+(Math.random()*120-40)+'px;animation-duration:'+(13+Math.random()*10)+'s;animation-delay:'+(-Math.random()*20)+'s';
+    d.style.cssText='left:'+(Math.random()*100)+'%;width:'+w+'px;opacity:'+(.38+Math.random()*.22)+';--dx:'+(Math.random()*120-40)+'px;animation-duration:'+(13+Math.random()*10)+'s;animation-delay:'+(-Math.random()*20)+'s';
     var im=new Image();im.alt='';im.src=SRC[i%SRC.length];
     im.onerror=function(){this.parentNode&&(this.parentNode.innerHTML=SVG)};
     im.style.animationDuration=(2.6+Math.random()*2)+'s';
